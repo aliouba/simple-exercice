@@ -1,0 +1,32 @@
+version: "3.3"
+services:
+  port-tutorial1:
+    image: port-tutorial-with-curl
+    ports:
+      - "30001:3000"
+    entrypoint: /usr/bin/nodejs /home/hello-world/app.js
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 1ms
+      timeout: 10s
+      retries: 2
+  port-tutorial2:
+    image: port-tutorial-with-curl
+    ports:
+      - "30002:3000"
+    entrypoint: /usr/bin/nodejs /home/hello-world/app.js
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 1ms
+      timeout: 10s
+      retries: 2
+  port-tutorial3:
+    image: port-tutorial-with-curl
+    ports:
+      - "30003:3000"
+    entrypoint: /usr/bin/nodejs /home/hello-world/app.js
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 1ms
+      timeout: 10s
+      retries: 2
