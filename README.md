@@ -21,7 +21,9 @@
 		docker swarm init
 		docker stack deploy --compose-file swarkit-docker-compose.yaml port-tutorial
 		To get the unique endpoint that targets the 3 instances: docker service ls
-	#Kubernetes
+	#Kubernetes (Kubernetes Cluster is required)
+		kubectl create -f kubernetes/
+		To get the unique endpoint that targets the 3 instances: kubectl get svc
 
 
 
