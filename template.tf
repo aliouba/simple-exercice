@@ -49,7 +49,7 @@ resource "aws_route_table_association" "public-rt-assoc" {
 
 
 resource "aws_security_group" "sg-ssh-http" {
-  name = "sg-ssh-http"
+  name = "ssh-http"
   description = "Allow incoming HTTP and SSH"
 
   ingress {
