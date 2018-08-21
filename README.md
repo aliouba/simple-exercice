@@ -15,7 +15,7 @@
 		docker build -t port-tutorial-with-curl .
 	# Deployment
 		docker-compose up -d
-# Alternative
+# Alternatives
 
 	#Swarm
 		docker swarm init
