@@ -1,3 +1,8 @@
+# Requirements
+
+* Terraform
+* AWS account (access_key and secret_key are required)
+
 # Simple way (Development only)
 
 	# Deploy AWS infrastructure with terraform
