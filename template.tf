@@ -47,6 +47,47 @@ resource "aws_route_table_association" "public-rt-assoc" {
   route_table_id = "${aws_route_table.public-rt.id}"
 }
 
+
+resource "aws_security_group" "sg-ssh-http" {
+  name = "sg-ssh-http"
+  description = "Allow incoming HTTP and SSH"
+
+  ingress {
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port = 443
+    to_port = 443
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port = -1
+    to_port = -1
+    protocol = "icmp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks =  ["0.0.0.0/0"]
+  }
+
+  vpc_id="${aws_vpc.vpc1.id}"
+
+  tags {
+    Name = "SSH and HTTP SG"
+  }
+}
+
+
 resource "aws_key_pair" "my_key" {
   key_name = "my_key_name"
   public_key = "${file("${var.key_path}")}"
@@ -60,4 +101,5 @@ resource "aws_instance" "instance1" {
   associate_public_ip_address = true
   source_dest_check = false
   user_data = "${file("install_docker_and_compose.sh")}"
+  vpc_security_group_ids = ["${aws_security_group.sg-ssh-http.id}"]
 }
