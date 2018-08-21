@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: port-tutorial-deployment
+  labels:
+    app: port-tutorial
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: port-tutorial
+  template:
+    metadata:
+      labels:
+        app: port-tutorial
+    spec:
+      containers:
+      - name: port-tutorial
+        image: aliouba/port-tutorial-with-curl
+        command: ["/usr/bin/nodejs","/home/hello-world/app.js"]
+        ports:
+        - containerPort: 3000
