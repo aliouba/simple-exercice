@@ -8,7 +8,7 @@
 	# Deploy AWS infrastructure with terraform
 	 	terraform plan
 	 	terrafom apply
-	# build image to a curl package that is required for HEALTHCHECK
+	# build image and curl package that is required for HEALTHCHECK
 		ssh to instance created via terraform
 		git clone https://github.com/aliouba/simple-exercice
 		cd simple-exercice
