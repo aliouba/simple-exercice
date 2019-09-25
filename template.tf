@@ -7,7 +7,7 @@ provider "aws" {
 resource "aws_vpc" "vpc1" {
   cidr_block = "${var.vpc_cidr}"
   enable_dns_hostnames = true
-  tags {
+  tags = {
     Name = "vpc1"
   }
 }
@@ -16,7 +16,7 @@ resource "aws_vpc" "vpc1" {
 resource "aws_subnet" "public-subnet" {
   vpc_id = "${aws_vpc.vpc1.id}"
   cidr_block = "${var.public_subnet_cidr}"
-  tags {
+  tags = {
     Name = "Public Subnet"
   }
 }
@@ -24,7 +24,7 @@ resource "aws_subnet" "public-subnet" {
 
 resource "aws_internet_gateway" "gw" {
   vpc_id = "${aws_vpc.vpc1.id}"
-  tags {
+  tags = {
     Name = "Internet gw"
   }
 }
@@ -37,7 +37,7 @@ resource "aws_route_table" "public-rt" {
     gateway_id = "${aws_internet_gateway.gw.id}"
   }
 
-  tags {
+  tags = {
     Name = "Public Route Table"
   }
 }
@@ -89,7 +89,7 @@ resource "aws_security_group" "sg-ssh-http" {
 
   vpc_id="${aws_vpc.vpc1.id}"
 
-  tags {
+  tags =  {
     Name = "SSH and HTTP SG"
   }
 }
