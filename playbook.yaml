@@ -1,0 +1,64 @@
+---
+- hosts: ec2
+  become: yes
+  tasks: 
+
+  # install docker et docker compose
+  
+
+  - name: install package
+    apt: 
+      name: 
+       - apt-transport-https
+       - ca-certificates
+       - curl
+       - software-properties-common
+      state: present
+
+  - name: get docker repository
+    shell: curl -fsSL https://get.docker.com -o get-docker.sh 
+
+  - name:  run get-docker.sh
+    shell: sh get-docker.sh
+
+  - name: add group
+    group: 
+      name: ubuntu
+      state: present
+
+  - name: add user to ubuntu group
+    user:
+       name: Docker
+       group: ubuntu
+
+  - name: Ensure docker is started
+    systemd:
+      state: started
+      name: docker
+  - name: Ensure Docker is enable
+    shell: systemctl enable docker
+
+  #install docker compose
+
+  - name: install docker compose
+    shell: curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+
+  - name: change permission
+    file:
+      path:  /usr/local/bin/docker-compose
+      mode: u+x 
+
+  - name: update the system
+    apt:
+      name: "*"
+      state: latest
+
+  # install git
+
+  - name: install git 
+    apt: 
+       pkg: git
+       state: present
+    
+  
+

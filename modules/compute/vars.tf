@@ -1,9 +1,14 @@
-variable "access_key" {}
-variable "secret_key" {}
+variable "access_key" {
+         description = "access_key"
+         default = ""
+}
+variable "secret_key" {
+          default = ""
+          }
 
 variable "aws_region" {
   description = "AWS Region"
-  default = "eu-central-1"
+  default = "us-east-1"
 }
 
 variable "vpc_cidr" {
@@ -23,10 +28,11 @@ variable "private_subnet_cidr" {
 
 variable "ami" {
   description = "Ubuntu 16.04"
-  default = "ami-9fbfb174"
+  default = "ami-0022c769"
 }
-
+variable "subnet_id" {}
+variable "sg_id" {}
 variable "key_path" {
   description = "SSH Public Key path"
-  default = "/Users/boomfaya/.ssh/id_rsa.pub"
+  default = "/home/marwa/.ssh/id_rsa.pub"
 }
