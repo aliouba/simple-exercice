@@ -1,6 +1,6 @@
 ---
 - hosts: ec2
-  become: yes
+  gather_facts: False
   tasks: 
 
   # install docker et docker compose
